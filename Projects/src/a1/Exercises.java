@@ -1,6 +1,7 @@
 package a1;
 
 import java.util.Arrays;
+import java.util.regex.*;
 
 public class Exercises {
 	
@@ -19,15 +20,22 @@ public class Exercises {
 		//Recursive return statement
 		return isPalindrome(s.substring(1, s.length()));
 	}
+	
+	public static String normalize(String s) {
+
+		return s.split("[\\s\\p{Punct}]").toString();
+	}
 
 	/** Returns the median of the values */
 	public static int median(int[] values) {
 		assert values != null;
-//		int[] sorted = values.;
+		int[] sorted = values;
+		Arrays.sort(sorted);
 		if (values.length % 2 == 1) {
-			return values[values.length / 2];
+			return sorted[(sorted.length -1)/ 2];
+		} else {
+			return (sorted[(sorted.length)/2] + sorted[sorted.length/2-1])/2;
 		}
-//	return (s[0] == s[-1]) && isPalindrome(String s[1:-1]);
 	}
 
 	/** Returns the number of 0's in values */
@@ -60,7 +68,7 @@ public class Exercises {
 		assert values != null;
 		int len = values.length;
 		int ref = values[0][0];
-		for (int k = 1; k < values.length; k++) {
+		for (int k = 0; k < values.length; k++) {
 			assert values[k].length == len;
 			if (values[k][k] != ref) {
 				return false;
