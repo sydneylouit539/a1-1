@@ -73,6 +73,10 @@ public class Person {
 	
 	// Group B: Setters
 	
+	/** Allows user to set name of Person
+	 * 
+	 * @param name a non-empty, non-null String to change this person's name
+	 */
 	public void setName(String name) {
 
 		assert name != null && name != "";
@@ -80,20 +84,36 @@ public class Person {
 		return;
 	}
 	
+	/** Allows user to set birth year of Person
+	 * 
+	 * @param y an int representing this person's birth year
+	 */
 	public void setBirthYear(int y) {
 		this.year = y;
 	}
 	
+	/** Allows user to set birth month of Person
+	 * 
+	 * @param m an int between 1 and 12 representing this person's birth month
+	 */
 	public void setBirthMonth(int m) {
 		assert m <= 12 && m >= 1;
 		this.month = m;
 	}
 	
+	/** Allows user to set birth day of Person
+	 * 
+	 * @param d an int between 1 and 31 representing this person's birth day
+	 */
 	public void setBirthDay(int d) {
 		assert d <= 31 && d >= 1;
 		this.day = d;
 	}
 	
+	/** Allows user to set mother of Person
+	 * 
+	 * @param m a Person object representing this person's mother
+	 */
 	public void setMother(Person m) {
 		if (this.mother != null) {
 			mother.children -= 1;
@@ -102,6 +122,10 @@ public class Person {
 		mother.children +=1;
 	}
 	
+	/** Allows user to set father of Person
+	 * 
+	 * @param f a Person object representing this person's father
+	 */
 	public void setFather(Person f) {
 		if (this.father != null) {
 			father.children -= 1;
@@ -112,6 +136,11 @@ public class Person {
 	
 	// Group C:
 	
+	/** Determines if Person object other shares a parent with this person
+	 * 
+	 * @param other a Person object
+	 * @return boolean true if this person and other share a parent, false otherwise
+	 */
 	public boolean isHalfSibling(Person other) {
 		
 		assert other != null;
@@ -120,13 +149,22 @@ public class Person {
 			
 	}
 	
+	/**
+	 * 
+	 * @param other a Person object
+	 * @return boolean true if this person is older than other, false otherwise
+	 */
 	public boolean isOlderThan(Person other) {
 		
-		return (365 * other.birthYear() + 30 * other.birthMonth() + other.birthDay()) < 
-				(365 * this.birthYear()+ 30 * this.birthMonth() + this.birthDay());
+		assert other != null;
 		
-	}
-	
-	
-			
+		// Preallocations to keep track of everything
+		boolean yearOlder = (this.birthYear() < other.birthYear());
+		boolean yearEqual = (this.birthYear() == other.birthYear());
+		boolean monthOlder = (this.birthMonth() < other.birthMonth());
+		boolean monthEqual = (this.birthMonth() == other.birthMonth());
+		boolean dayOlder = (this.birthDay() < other.birthDay());
+		
+		return (yearOlder || (yearEqual && (monthOlder || (monthEqual && dayOlder))));
+	}		
 }
