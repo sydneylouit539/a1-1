@@ -13,6 +13,16 @@ public class Person {
 	int day = 0;
 	int children = 0;
 	
+//	public static void main(String[] args) {
+//		Person p = new Person("guy 1", 1990, 2, 7);
+//		String n = p.name();
+//		int y = p.birthYear();
+//		int m = p.birthMonth();
+//		int d = p.birthDay();
+//		
+//		System.out.println(d);
+//	}
+	
 		
 	// Group A: Constructors and getters:
 	/**
