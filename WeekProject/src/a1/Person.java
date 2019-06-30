@@ -1,7 +1,5 @@
 package a1;
 
-//import java.util.ArrayList;
-
 public class Person {
 	
 	// Initializations
@@ -12,17 +10,7 @@ public class Person {
 	int month = 0;
 	int day = 0;
 	int children = 0;
-	
-//	public static void main(String[] args) {
-//		Person p = new Person("guy 1", 1990, 2, 7);
-//		String n = p.name();
-//		int y = p.birthYear();
-//		int m = p.birthMonth();
-//		int d = p.birthDay();
-//		
-//		System.out.println(d);
-//	}
-	
+		
 		
 	// Group A: Constructors and getters:
 	/**
@@ -154,8 +142,10 @@ public class Person {
 	public boolean isHalfSibling(Person other) {
 		
 		assert other != null;
-		// some weird OR statement error with this: return ((this.mother() | this.father()) == (other.mother() | other.father()));
-		return ((this.mother() == other.mother()) | (this.father() == other.mother()) | (this.mother() == other.father()) | (this.father() == other.father()));
+		return ((this.mother() == other.mother() && this.mother != null) |
+				(this.father() == other.mother() && this.father != null) |
+				(this.mother() == other.father() && this.mother != null) | 
+				(this.father() == other.father() && this.father != null));
 			
 	}
 	
